@@ -1,16 +1,16 @@
 ask= True
 # Diccionario de productos de supermercado
 productos = {
-    "manzanas": {"precio": 1200, "cantidad": 50},
-    "pan": {"precio": 800, "cantidad": 30},
-    "leche": {"precio": 1500,"cantidad": 20},
-    "huevos": {"precio": 2500, "cantidad": 10},
-    "arroz": {"precio": 900, "cantidad": 40},
-    "pollo": {"precio": 5000, "cantidad": 15},
-    "papel higiénico": {"precio": 3000, "cantidad": 25},
-    "jugo": {"precio": 2000, "cantidad": 18},
-    "queso": {"precio": 4000, "cantidad": 12},
-    "cereal": {"precio": 3500, "cantidad": 8}
+    "manzanas": (1200, 50),
+    "pan": (800, 30),
+    "leche": (1500,20),
+    "huevos": (2500, 10),
+    "arroz": (900, 40),
+    "pollo": (5000, 15),
+    "papel higiénico": (3000, 25),
+    "jugo": (2000, 18),
+    "queso": (4000, 12),
+    "cereal": (3500, 8)
 }
 
 # Lista para almacenar el historial de movimientos
@@ -25,7 +25,7 @@ def registrar_movimiento(accion, producto, detalles):
     """
     movimiento = (accion, producto, detalles)
     historial_movimientos.append(movimiento)
-
+#historial de movimientos
 def ver_historial():
     """
     Muestra el historial de movimientos realizados.
@@ -69,6 +69,7 @@ def ver_productos():
         print(f"{producto.capitalize()}: Precio: ${info['precio']}, Cantidad: {info['cantidad']}")
 
 def agregar_producto():
+    global ask
     while ask:
         nombre = input("Ingrese el nombre del producto: ").lower()
         if nombre in productos:
@@ -82,11 +83,12 @@ def agregar_producto():
         agregar_mas = input("¿Desea agregar otro producto? (si/no): ").lower()
         if agregar_mas != "si":
             ask = False
-        menu()
+            menu()
     
 def actualizar_producto():
     print("Qué producto desea actualizar?")
     ver_productos()
+    global ask
     while ask:
         nombre = input("Ingrese el nombre del producto: ").lower()
         if nombre in productos:
@@ -125,4 +127,14 @@ def eliminar_producto():
     else:
         print("El producto no existe.")
         menu()
-
+def value():
+    calcule = lambda x,y: x*y
+    addition = 0
+    print(f"{'productos':<{20}}\tprecio")
+    for nombre,x in productos.items():
+        addition += calcule(x[0],x[1])
+        print(f"{nombre:<{24}}{x[0]}")
+    
+    print(f"\ntotal {addition}")
+# menu()
+value()
