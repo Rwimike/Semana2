@@ -14,7 +14,7 @@ productos = {
 
 # Lista para almacenar el historial de movimientos
 historial_movimientos = []
-
+#
 def registrar_movimiento(accion, producto, detalles):
     """
     Registra un movimiento en el historial.
